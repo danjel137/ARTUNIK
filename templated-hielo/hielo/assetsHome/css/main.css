@@ -4321,3 +4321,12 @@
 			}
 
 		}
+
+#header .logo img {
+	position: relative;
+	top:-5px;
+	width: 80px; /* Adjust the width as needed */
+	height: auto; /* Maintain aspect ratio */
+	/*border: 2px solid black; !* Add a border around the logo *!*/
+	border-radius:50%;
+}
