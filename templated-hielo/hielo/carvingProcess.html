@@ -1,191 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="carvingProcess.css">
+<!DOCTYPE HTML>
+<!--
+	ArtUnik
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+<head><title>ArtUnik </title>
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assetsHome/css/main.css">
+    <link rel="stylesheet" href="carvingProcess.css" />
+
 
 </head>
-<body>
-<div id="Gallery">
-    <div class="gallery-item">
-        <a href="./images/pic01.jpg"><img src="./images/pic01.jpg" alt="Exterior"/></a>
+<body class="subpage">
+
+<!-- Header -->
+<header id="header">
+    <div class="logo"><a href="index.html">ArtUnik <span></span></a></div>
+    <a href="#menu">Menu</a>
+</header><!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="about.html">About the Artist</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="carvingProcess.html">Carving Process</a></li>
+    </ul>
+</nav><!-- One -->
+<section id="One" class="wrapper style3">
+    <div class="inner">
+        <header class="align-center"><p>Eleifend vitae urna</p>
+            <h2>collection Page </h2>
+        </header>
     </div>
-    <div class="gallery-item">
-        <a href="./images/pic01.jpg"><img src="./images/pic01.jpg" alt="Exterior"/></a>
-    </div>
-    <div class="gallery-item">
-        <a href="./images/slide04.jpg"><img src="./images/slide04.jpg" alt="Exterior"/></a>
-    </div>
-    <div class="gallery-item">
-        <a href="./images/slide04.jpg"><img src="./images/slide04.jpg" alt="Exterior"/></a>
-    </div>
-    <div class="gallery-item">
-        <a href="./images/pic01.jpg"><img src="./images/pic01.jpg" alt="Exterior"/></a>
-    </div>
+</section>
+
+
+<div class="containerr">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=0">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=100">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=200">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=300">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=400">
 </div>
+<br>
+<div class="containerr">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=0">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=100">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=200">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=300">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=400">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=400">
+</div>
+<br>
+<div class="containerr">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=0">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=100">
+    <img src="https://source.unsplash.com/random/600x600?bear,seed=200">
+</div>
+<br>
 
-<!-- Hidden close button -->
-<button id="closeBtn" class="ps-toolbar-close" style="display: none;"></button>
-<script src="carvingProcess.js"></script>
-<script>
-    $(document).ready(function() {
-        var initPhotoSwipeFromDOM = function(gallerySelector) {
-            // Parse slide data (url, title, size ...) from DOM elements
-            // (children of gallerySelector)
-            var parseThumbnailElements = function(el) {
-                var thumbElements = $(el).find('.gallery-item a'),
-                    numNodes = thumbElements.length,
-                    items = [],
-                    figureEl,
-                    linkEl,
-                    size,
-                    item;
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <ul class="icons">
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+        </ul>
+    </div>
+</footer>
 
-                for (var i = 0; i < numNodes; i++) {
-                    figureEl = thumbElements[i]; // <figure> element
-
-                    // include only element nodes
-                    if (figureEl.nodeType !== 1) {
-                        continue;
-                    }
-
-                    linkEl = figureEl.children[0]; // <a> element
-                    size = linkEl.getAttribute('data-size').split('x');
-
-                    // create slide object
-                    item = {
-                        src: linkEl.getAttribute('href'),
-                        w: parseInt(size[0], 10),
-                        h: parseInt(size[1], 10)
-                    };
-
-                    if (figureEl.children.length > 1) {
-                        // <figcaption> content
-                        item.title = figureEl.children[1].innerHTML;
-                    }
-
-                    items.push(item);
-                }
-
-                return items;
-            };
-
-            // find nearest parent element
-            var closest = function closest(el, fn) {
-                return el && (fn(el) ? el : closest(el.parentNode, fn));
-            };
-
-            // triggers when user clicks close button
-            var onThumbnailsClick = function(e) {
-                e = e || window.event;
-                e.preventDefault ? e.preventDefault() : e.returnValue = false;
-
-                var eTarget = e.target || e.srcElement;
-
-                var clickedListItem = closest(eTarget, function(el) {
-                    return el.tagName && el.tagName.toUpperCase() === 'A';
-                });
-
-                if (!clickedListItem) {
-                    return;
-                }
-
-                var clickedGallery = closest(eTarget, function(el) {
-                    return $(el).hasClass('gallery-item');
-                });
-
-                if (!clickedGallery) {
-                    return;
-                }
-
-                // open PhotoSwipe if valid link element clicked
-                var index = $(clickedListItem).parent('.gallery-item').index();
-                openPhotoSwipe(index, clickedGallery);
-            };
-
-            // open PhotoSwipe with the clicked item
-            var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
-                var pswpElement = document.querySelectorAll('.pswp')[0],
-                    gallery,
-                    options,
-                    items;
-
-                items = parseThumbnailElements(galleryElement);
-
-                // define options (if needed)
-                options = {
-                    // define gallery index (for URL)
-                    galleryUID: galleryElement.getAttribute('data-pswp-uid'),
-
-                    getThumbBoundsFn: function(index) {
-                        // See Options -> getThumbBoundsFn section of documentation for more info
-                        var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
-                            pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
-                            rect = thumbnail.getBoundingClientRect();
-
-                        return {
-                            x: rect.left,
-                            y: rect.top + pageYScroll,
-                            w: rect.width
-                        };
-                    }
-                };
-
-                // PhotoSwipe opened from URL
-                if (fromURL) {
-                    if (options.galleryPIDs) {
-                        // parse real index when custom PIDs are used
-                        // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
-                        for (var j = 0; j < items.length; j++) {
-                            if (items[j].pid == index) {
-                                options.index = j;
-                                break;
-                            }
-                        }
-                    } else {
-                        // in URL indexes start from 1
-                        options.index = parseInt(index, 10) - 1;
-                    }
-                } else {
-                    options.index = parseInt(index, 10);
-                }
-
-                // exit if index not found
-                if (isNaN(options.index)) {
-                    return;
-                }
-
-                if (disableAnimation) {
-                    options.showAnimationDuration = 0;
-                }
-
-                // Pass data to PhotoSwipe and initialize it
-                gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
-                gallery.init();
-
-                // Show close button
-                $('#closeBtn').show();
-
-                // Bind click event to close button
-                $('#closeBtn').on('click', function() {
-                    gallery.close();
-                });
-            };
-
-            // loop through all gallery elements and bind events
-            var galleryElements = document.querySelectorAll(gallerySelector);
-
-            for (var i = 0, l = galleryElements.length; i < l; i++) {
-                galleryElements[i].setAttribute('data-pswp-uid', i + 1);
-                galleryElements[i].onclick = onThumbnailsClick;
-            }
-        };
-
-        // execute above function
-        initPhotoSwipeFromDOM('#Gallery');
-    });
-</script>
 
 </body>
 </html>
