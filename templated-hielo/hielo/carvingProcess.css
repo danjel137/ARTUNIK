@@ -1,11 +1,11 @@
 @import "https://unpkg.com/open-props";
-@import "https://unpkg.com/open-props/normalize.min.css";
+/*@import "https://unpkg.com/open-props/normalize.min.css";*/
 
-* {
-    box-sizing: border-box;
-}
+/** {*/
+/*    box-sizing: border-box;*/
+/*}*/
 
-body {
+.big-container {
     display: grid;
     place-items: center;
     min-height: 100vh;
